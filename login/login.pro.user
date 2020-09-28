@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.13.1, 2020-09-27T01:07:49. -->
+<!-- Written by QtCreator 4.13.1, 2020-09-28T22:08:02. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -325,8 +325,9 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:G:/MeineProgramme/Erfolge_QT/login/login.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">G:/MeineProgramme/Erfolge_QT/login/login.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">login2</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:G:/MeineProgramme/Git/Erfolge_QT/Erfolgsberichte_QT/login/login.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">G:/MeineProgramme/Git/Erfolge_QT/Erfolgsberichte_QT/login/login.pro</value>
     <value type="QString" key="RunConfiguration.Arguments"></value>
     <value type="bool" key="RunConfiguration.Arguments.multi">false</value>
     <value type="QString" key="RunConfiguration.OverrideDebuggerStartup"></value>
