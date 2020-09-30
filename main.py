@@ -30,13 +30,34 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.ui.tabel_erfolge.hideColumn(0)
         self.ui.tabel_erfolge.hideColumn(2)
+
         self.ui.mw_feedback_label.hide()
+
+        # make tabel_erfolge readonly!
+
+        # hide widgets for report creation
+        self.ui.mw_cr_button.hide()
+        self.ui.mw_cr_cat_box.hide()
+        self.ui.mw_cr_cat_label.hide()
+        self.ui.mw_cr_from_date.hide()
+        self.ui.mw_cr_from_label.hide()
+        self.ui.mw_cr_to_date.hide()
+        self.ui.mw_cr_to_label.hide()
+
+        # hide widgets for new entrys
+        self.ui.mw_button_save.hide()
+        self.ui.mw_ae_cat.hide()
+        self.ui.mw_ae_date.hide()
+        self.ui.mw_ae_text.hide()
+        self.ui.mw_ae_cat_label.hide()
+        self.ui.mw_ae_date_label.hide()
+        self.ui.mw_ae_text_label.hide()
 
         self.ui.mw_button_show.clicked.connect(self.show_erfolge)
         self.ui.mw_button_new.clicked.connect(self.add_line)
         self.ui.mw_button_save.clicked.connect(self.save_erfolge)
         self.ui.mw_sammeln_button.clicked.connect(self.get_mail)
-        self.ui.mw_create_button.clicked.connect(self.create_report)
+        self.ui.mw_cr_button.clicked.connect(self.create_report)
 
     def get_user(self, user):
         self.user = user
@@ -47,6 +68,15 @@ class MainWindow(QtWidgets.QMainWindow):
         self.show_erfolge()
 
     def add_line(self):
+        self.ui.mw_button_save.show()
+        self.ui.mw_ae_cat.show()
+        self.ui.mw_ae_date.show()
+        self.ui.mw_ae_text.show()
+        self.ui.mw_ae_cat_label.show()
+        self.ui.mw_ae_date_label.show()
+        self.ui.mw_ae_text_label.show()
+
+        # ToDo: take text from input Widgets into rows.
         row = self.ui.tabel_erfolge.rowCount()
         self.ui.tabel_erfolge.insertRow(row)
         self.ui.tabel_erfolge.setItem(row, 0, QtWidgets.QTableWidgetItem('---'))

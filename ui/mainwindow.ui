@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>799</width>
-    <height>626</height>
+    <width>637</width>
+    <height>664</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,64 +15,6 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
-    <item row="0" column="0">
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="2">
-       <widget class="QDateEdit" name="mw_date_von">
-        <property name="wrapping">
-         <bool>false</bool>
-        </property>
-        <property name="calendarPopup">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>von:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>bis:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="2">
-       <widget class="QDateEdit" name="mw_date_bis">
-        <property name="calendarPopup">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="4">
-       <widget class="QLabel" name="label_4">
-        <property name="text">
-         <string>Bereich der Erfolge:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="4">
-       <widget class="QComboBox" name="mw_bereich_cbox">
-        <item>
-         <property name="text">
-          <string>Alle</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="0" column="5">
-       <widget class="QPushButton" name="mw_create_button">
-        <property name="text">
-         <string>Bericht ertellen</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
     <item row="1" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
@@ -92,16 +34,6 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="mw_button_show">
-        <property name="text">
-         <string>anzeigen</string>
-        </property>
-        <property name="default">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
        <widget class="QPushButton" name="mw_button_new">
         <property name="text">
          <string>neu</string>
@@ -112,6 +44,75 @@
        </widget>
       </item>
       <item>
+       <widget class="QPushButton" name="mw_button_show">
+        <property name="text">
+         <string>anzeigen</string>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="4" column="0">
+     <layout class="QFormLayout" name="formLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="mw_ae_date_label">
+        <property name="text">
+         <string>Datum:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QDateEdit" name="mw_ae_date">
+        <property name="calendarPopup">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="mw_ae_cat_label">
+        <property name="text">
+         <string>Bereich:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QComboBox" name="mw_ae_cat">
+        <item>
+         <property name="text">
+          <string>Arbeitsmarktintegration</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Ehrenamt</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Vernetzung</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Sonstige</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="mw_ae_text_label">
+        <property name="text">
+         <string>Eintrag:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QTextEdit" name="mw_ae_text"/>
+      </item>
+      <item row="3" column="1">
        <widget class="QPushButton" name="mw_button_save">
         <property name="text">
          <string>speichern</string>
@@ -126,7 +127,65 @@
       </item>
      </layout>
     </item>
-    <item row="5" column="0">
+    <item row="2" column="0">
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="3">
+       <widget class="QPushButton" name="mw_cr_button">
+        <property name="text">
+         <string>Bericht ertellen</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="mw_cr_cat_label">
+        <property name="text">
+         <string>Bereich der Erfolge:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QComboBox" name="mw_cr_cat_box">
+        <item>
+         <property name="text">
+          <string>Alle</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QDateEdit" name="mw_cr_to_date">
+        <property name="calendarPopup">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QDateEdit" name="mw_cr_from_date">
+        <property name="wrapping">
+         <bool>false</bool>
+        </property>
+        <property name="calendarPopup">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="mw_cr_from_label">
+        <property name="text">
+         <string>von:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="mw_cr_to_label">
+        <property name="text">
+         <string>bis:</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="6" column="0">
      <widget class="QTableWidget" name="tabel_erfolge">
       <property name="autoFillBackground">
        <bool>false</bool>
@@ -150,6 +209,15 @@
        <bool>true</bool>
       </attribute>
       <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="verticalHeaderMinimumSectionSize">
+       <number>18</number>
+      </attribute>
+      <attribute name="verticalHeaderDefaultSectionSize">
+       <number>25</number>
+      </attribute>
+      <attribute name="verticalHeaderShowSortIndicator" stdset="0">
        <bool>true</bool>
       </attribute>
       <attribute name="verticalHeaderStretchLastSection">
@@ -182,94 +250,35 @@
       </column>
      </widget>
     </item>
-    <item row="2" column="0">
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <widget class="QLabel" name="mw_feedback_label">
-        <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::Box</enum>
-        </property>
-        <property name="text">
-         <string>TextLabel</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-        <property name="textInteractionFlags">
-         <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item row="3" column="0">
-     <layout class="QFormLayout" name="neuerEintrag_layout">
-      <item row="2" column="1">
-       <widget class="QTextEdit" name="textEdit"/>
-      </item>
-      <item row="0" column="1">
-       <widget class="QDateEdit" name="dateEdit">
-        <property name="calendarPopup">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="label_3">
-        <property name="text">
-         <string>Datum:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label_5">
-        <property name="text">
-         <string>Bereich:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="label_6">
-        <property name="text">
-         <string>Eintrag:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QComboBox" name="comboBox">
-        <item>
-         <property name="text">
-          <string>Arbeitsmarktintegration</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Ehrenamt</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Vernetzung</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Sonstige</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item row="6" column="0">
-     <widget class="QLabel" name="label_user">
+    <item row="5" column="0">
+     <widget class="QLabel" name="mw_feedback_label">
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Box</enum>
+      </property>
       <property name="text">
        <string>TextLabel</string>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="textInteractionFlags">
+       <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+      </property>
      </widget>
+    </item>
+    <item row="7" column="0">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QLabel" name="label_user">
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>
@@ -278,7 +287,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>799</width>
+     <width>637</width>
      <height>21</height>
     </rect>
    </property>
