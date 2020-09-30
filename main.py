@@ -1,11 +1,13 @@
-import sys
 import csv
-import time
 import os
+import sys
+import time
+
 from qtpy import QtWidgets
-from ui.mainwindow import Ui_Erfolgsberichte
+
 from login.mainwindow import Ui_MainWindow
 from sucsessreports.User import User
+from ui.mainwindow import Ui_Erfolgsberichte
 
 # ToDo:
 #     create method to create the report
@@ -35,7 +37,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         # make tabel_erfolge readonly!
 
-        # hide widgets for report creation
+        # hide widgets for report creation ToDo: put in method
         self.ui.mw_cr_button.hide()
         self.ui.mw_cr_cat_box.hide()
         self.ui.mw_cr_cat_label.hide()
@@ -44,7 +46,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.mw_cr_to_date.hide()
         self.ui.mw_cr_to_label.hide()
 
-        # hide widgets for new entrys
+        # hide widgets for new entrys ToDo: put in method
         self.ui.mw_button_save.hide()
         self.ui.mw_ae_cat.hide()
         self.ui.mw_ae_date.hide()
@@ -54,8 +56,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.mw_ae_text_label.hide()
 
         self.ui.mw_button_show.clicked.connect(self.show_erfolge)
-        self.ui.mw_button_new.clicked.connect(self.add_line)
-        self.ui.mw_button_save.clicked.connect(self.save_erfolge)
+        self.ui.mw_button_new.clicked.connect(self.new_entry)
+        self.ui.mw_button_save.clicked.connect(self.add_line)
         self.ui.mw_sammeln_button.clicked.connect(self.get_mail)
         self.ui.mw_cr_button.clicked.connect(self.create_report)
 
@@ -67,25 +69,33 @@ class MainWindow(QtWidgets.QMainWindow):
         self.user.get_mail()
         self.show_erfolge()
 
-    def add_line(self):
+    def new_entry(self):
         self.ui.mw_button_save.show()
         self.ui.mw_ae_cat.show()
         self.ui.mw_ae_date.show()
         self.ui.mw_ae_text.show()
+        self.ui.mw_ae_text.setPlainText('Hier Text eingeben!')
         self.ui.mw_ae_cat_label.show()
         self.ui.mw_ae_date_label.show()
         self.ui.mw_ae_text_label.show()
 
-        # ToDo: take text from input Widgets into rows.
+        self.ui.mw_feedback_label.setText('Achtung: ungespeicherte Änderungen!')
+
+    def add_line(self):
+        date = '{year:04d}-{month:02d}-{day:02d}'.format(day=self.ui.mw_ae_date.date().day(),
+                                                         month=self.ui.mw_ae_date.date().month(),
+                                                         year=self.ui.mw_ae_date.date().year())
+
         row = self.ui.tabel_erfolge.rowCount()
         self.ui.tabel_erfolge.insertRow(row)
         self.ui.tabel_erfolge.setItem(row, 0, QtWidgets.QTableWidgetItem('---'))
+        self.ui.tabel_erfolge.setItem(row, 1, QtWidgets.QTableWidgetItem(date))
         self.ui.tabel_erfolge.setItem(row, 2, QtWidgets.QTableWidgetItem(self.user.name))
-        self.ui.mw_feedback_label.setText('Achtung: ungespeicherte Änderungen!')
-        self.ui.mw_feedback_label.show()
-        self.ui.mw_button_show.setFlat(True)
-        self.ui.mw_button_save.setFlat(False)
-        self.ui.mw_button_save.setDefault(True)
+        self.ui.tabel_erfolge.setItem(row, 3, QtWidgets.QTableWidgetItem(self.ui.mw_ae_cat.currentText()))
+        self.ui.tabel_erfolge.setItem(row, 4, QtWidgets.QTableWidgetItem(self.ui.mw_ae_text.toPlainText()))
+
+        self.save_erfolge()
+        self.ui.mw_feedback_label.setText('')
 
     def show_erfolge(self):
         if self.ui.mw_feedback_label.text() != 'Achtung: ungespeicherte Änderungen!':
@@ -123,7 +133,6 @@ class MainWindow(QtWidgets.QMainWindow):
             self.ui.mw_feedback_label.show()
             time.sleep(0.5)
             self.ui.mw_button_show.setFlat(False)
-            self.ui.mw_button_save.setFlat(True)
             self.show_erfolge()
 
     def create_report(self):
