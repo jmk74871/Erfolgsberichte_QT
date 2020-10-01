@@ -10,9 +10,8 @@ from sucsessreports.User import User
 from ui.mainwindow import Ui_Erfolgsberichte
 
 # ToDo:
+#     add delete and edit buttons for entries
 #     create method to create the report
-#     find way to make sure entry data is correct (mainly the date)
-#       make tabel_erfolge readonly
 #     check mailadress with regex when creating user
 
 
