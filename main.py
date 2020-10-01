@@ -12,10 +12,8 @@ from ui.mainwindow import Ui_Erfolgsberichte
 # ToDo:
 #     create method to create the report
 #     find way to make sure entry data is correct (mainly the date)
-#       add/delete via separate field in GUI and make List read only?
-#       add/delete entry via a separate window and make mainwindow list read only?
+#       make tabel_erfolge readonly
 #     check mailadress with regex when creating user
-#     move report creation to separate tab?
 
 
 app = QtWidgets.QApplication(sys.argv)
@@ -35,9 +33,13 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.ui.mw_feedback_label.hide()
 
-        # make tabel_erfolge readonly!
+        self.ui.mw_button_show.clicked.connect(self.show_erfolge)
+        self.ui.mw_button_new.clicked.connect(self._show_entry_widgets)
+        self.ui.mw_button_save.clicked.connect(self.add_line)
+        self.ui.mw_sammeln_button.clicked.connect(self.get_mail)
+        self.ui.mw_cr_button.clicked.connect(self.create_report)
 
-        # hide widgets for report creation ToDo: put in method
+    def _hide_report_widgets(self):
         self.ui.mw_cr_button.hide()
         self.ui.mw_cr_cat_box.hide()
         self.ui.mw_cr_cat_label.hide()
@@ -46,8 +48,18 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.mw_cr_to_date.hide()
         self.ui.mw_cr_to_label.hide()
 
-        # hide widgets for new entrys ToDo: put in method
+    def _show_report_widgets(self):
+        self.ui.mw_cr_button.show()
+        self.ui.mw_cr_cat_box.show()
+        self.ui.mw_cr_cat_label.show()
+        self.ui.mw_cr_from_date.show()
+        self.ui.mw_cr_from_label.show()
+        self.ui.mw_cr_to_date.show()
+        self.ui.mw_cr_to_label.show()
+
+    def _hide_entry_widgets(self):
         self.ui.mw_button_save.hide()
+        self.ui.mw_button_save.setDefault(False)
         self.ui.mw_ae_cat.hide()
         self.ui.mw_ae_date.hide()
         self.ui.mw_ae_text.hide()
@@ -55,31 +67,29 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.mw_ae_date_label.hide()
         self.ui.mw_ae_text_label.hide()
 
-        self.ui.mw_button_show.clicked.connect(self.show_erfolge)
-        self.ui.mw_button_new.clicked.connect(self.new_entry)
-        self.ui.mw_button_save.clicked.connect(self.add_line)
+    def _show_entry_widgets(self):
+        self.ui.mw_feedback_label.setText('Achtung: ungespeicherte Änderungen!')
         self.ui.mw_sammeln_button.clicked.connect(self.get_mail)
-        self.ui.mw_cr_button.clicked.connect(self.create_report)
+        self.ui.mw_button_save.show()
+        self.ui.mw_button_save.setDefault(True)
+        self.ui.mw_ae_cat.show()
+        self.ui.mw_ae_date.show()
+        self.ui.mw_ae_text.show()
+        self.ui.mw_ae_cat_label.show()
+        self.ui.mw_ae_date_label.show()
+        self.ui.mw_ae_text_label.show()
 
     def get_user(self, user):
         self.user = user
         self.ui.label_user.setText(f'Angemeldet als: {self.user.name}')
 
     def get_mail(self):
+        self._hide_report_widgets()
+        self._hide_entry_widgets()
+
+        self.save_erfolge()
         self.user.get_mail()
         self.show_erfolge()
-
-    def new_entry(self):
-        self.ui.mw_button_save.show()
-        self.ui.mw_ae_cat.show()
-        self.ui.mw_ae_date.show()
-        self.ui.mw_ae_text.show()
-        self.ui.mw_ae_text.setPlainText('Hier Text eingeben!')
-        self.ui.mw_ae_cat_label.show()
-        self.ui.mw_ae_date_label.show()
-        self.ui.mw_ae_text_label.show()
-
-        self.ui.mw_feedback_label.setText('Achtung: ungespeicherte Änderungen!')
 
     def add_line(self):
         date = '{year:04d}-{month:02d}-{day:02d}'.format(day=self.ui.mw_ae_date.date().day(),
@@ -95,10 +105,13 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.tabel_erfolge.setItem(row, 4, QtWidgets.QTableWidgetItem(self.ui.mw_ae_text.toPlainText()))
 
         self.save_erfolge()
+        self._hide_entry_widgets()
         self.ui.mw_feedback_label.setText('')
 
     def show_erfolge(self):
-        if self.ui.mw_feedback_label.text() != 'Achtung: ungespeicherte Änderungen!':
+        if self.ui.mw_feedback_label.text() == 'Achtung: ungespeicherte Änderungen!':
+            pass
+        else:
             self.ui.tabel_erfolge.setRowCount(0)
             with open(self.user.db_path, 'r', encoding='utf_8') as user_db:
                 reader = csv.DictReader(user_db)
@@ -111,12 +124,10 @@ class MainWindow(QtWidgets.QMainWindow):
                     self.ui.tabel_erfolge.setItem(row, 3, QtWidgets.QTableWidgetItem(line['CATEGORY']))
                     self.ui.tabel_erfolge.setItem(row, 4, QtWidgets.QTableWidgetItem(line['TEXT']))
             self.ui.mw_feedback_label.hide()
-        else:
-            pass
 
     def save_erfolge(self):
         if self.ui.tabel_erfolge.rowCount() == 0:
-            self.ui.mw_feedback_label.setText('Fehler: Speichern nicht möglich. Keine Daten vorhanden.')
+            pass
         else:
             with open(self.user.db_path, 'w', encoding='utf_8') as user_db:
                 fnames = ["UID", "DATE", "FROM", "CATEGORY", "TEXT"]
@@ -131,7 +142,7 @@ class MainWindow(QtWidgets.QMainWindow):
                                      "TEXT": self.ui.tabel_erfolge.item(row, 4).text()})
             self.ui.mw_feedback_label.setText('Daten erfolgreich gespeichert')
             self.ui.mw_feedback_label.show()
-            time.sleep(0.5)
+            time.sleep(0.2)
             self.ui.mw_button_show.setFlat(False)
             self.show_erfolge()
 
@@ -164,8 +175,9 @@ class LoginWindow(QtWidgets.QMainWindow):
                         and user['name'].strip() == self.ui.login_name.text().strip():
                     cert_user = User(user['name'], user['mail1'])
                     window.get_user(cert_user)
-                    window.show()
                     window.get_mail()
+                    window.show()
+
                     self.close()
 
         self.ui.login_name.setText('')

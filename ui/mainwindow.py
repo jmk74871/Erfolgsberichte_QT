@@ -60,7 +60,7 @@ class Ui_Erfolgsberichte(object):
         self.formLayout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.mw_ae_text_label)
         self.mw_button_save = QtWidgets.QPushButton(self.centralwidget)
         self.mw_button_save.setDefault(False)
-        self.mw_button_save.setFlat(True)
+        self.mw_button_save.setFlat(False)
         self.mw_button_save.setObjectName("mw_button_save")
         self.formLayout.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.mw_button_save)
         self.mw_ae_text = QtWidgets.QTextEdit(self.centralwidget)
