@@ -15,177 +15,7 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
-    <item row="1" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QPushButton" name="mw_sammeln_button">
-        <property name="text">
-         <string>Erfolge sammeln</string>
-        </property>
-        <property name="autoDefault">
-         <bool>false</bool>
-        </property>
-        <property name="default">
-         <bool>false</bool>
-        </property>
-        <property name="flat">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="mw_button_new">
-        <property name="text">
-         <string>neu</string>
-        </property>
-        <property name="default">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="mw_button_show">
-        <property name="text">
-         <string>anzeigen</string>
-        </property>
-        <property name="default">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item row="4" column="0">
-     <layout class="QFormLayout" name="formLayout">
-      <item row="0" column="0">
-       <widget class="QLabel" name="mw_ae_date_label">
-        <property name="text">
-         <string>Datum:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QDateEdit" name="mw_ae_date">
-        <property name="calendarPopup">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="mw_ae_cat_label">
-        <property name="text">
-         <string>Bereich:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QComboBox" name="mw_ae_cat">
-        <item>
-         <property name="text">
-          <string>Arbeitsmarktintegration</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Ehrenamt</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Vernetzung</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Sonstige</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="mw_ae_text_label">
-        <property name="text">
-         <string>Eintrag:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QPushButton" name="mw_button_save">
-        <property name="text">
-         <string>speichern</string>
-        </property>
-        <property name="default">
-         <bool>false</bool>
-        </property>
-        <property name="flat">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QTextEdit" name="mw_ae_text"/>
-      </item>
-     </layout>
-    </item>
-    <item row="2" column="0">
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="3">
-       <widget class="QPushButton" name="mw_cr_button">
-        <property name="text">
-         <string>Bericht ertellen</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QLabel" name="mw_cr_cat_label">
-        <property name="text">
-         <string>Bereich der Erfolge:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="2">
-       <widget class="QComboBox" name="mw_cr_cat_box">
-        <item>
-         <property name="text">
-          <string>Alle</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QDateEdit" name="mw_cr_to_date">
-        <property name="calendarPopup">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QDateEdit" name="mw_cr_from_date">
-        <property name="wrapping">
-         <bool>false</bool>
-        </property>
-        <property name="calendarPopup">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="mw_cr_from_label">
-        <property name="text">
-         <string>von:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="mw_cr_to_label">
-        <property name="text">
-         <string>bis:</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item row="6" column="0">
+    <item row="10" column="0">
      <widget class="QTableWidget" name="tabel_erfolge">
       <property name="autoFillBackground">
        <bool>false</bool>
@@ -259,7 +89,7 @@
       </column>
      </widget>
     </item>
-    <item row="5" column="0">
+    <item row="7" column="0">
      <widget class="QLabel" name="mw_feedback_label">
       <property name="layoutDirection">
        <enum>Qt::LeftToRight</enum>
@@ -278,7 +108,194 @@
       </property>
      </widget>
     </item>
-    <item row="7" column="0">
+    <item row="4" column="0">
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="2" column="0">
+       <widget class="QLabel" name="mw_cr_to_label">
+        <property name="text">
+         <string>bis:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="mw_cr_cat_label">
+        <property name="text">
+         <string>Bereich der Erfolge:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QDateEdit" name="mw_cr_from_date">
+        <property name="wrapping">
+         <bool>false</bool>
+        </property>
+        <property name="calendarPopup">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QComboBox" name="mw_cr_cat_box">
+        <item>
+         <property name="text">
+          <string>Alle</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QPushButton" name="mw_cr_button">
+        <property name="text">
+         <string>Bericht ertellen</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QDateEdit" name="mw_cr_to_date">
+        <property name="calendarPopup">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="mw_cr_from_label">
+        <property name="text">
+         <string>von:</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="8" column="0">
+     <widget class="QPushButton" name="mw_edit_button">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="text">
+       <string>Bearbeiten</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0">
+     <layout class="QFormLayout" name="formLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="mw_ae_date_label">
+        <property name="text">
+         <string>Datum:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QDateEdit" name="mw_ae_date">
+        <property name="calendarPopup">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="mw_ae_cat_label">
+        <property name="text">
+         <string>Bereich:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QComboBox" name="mw_ae_cat">
+        <item>
+         <property name="text">
+          <string>Arbeitsmarktintegration</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Ehrenamt</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Vernetzung</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Sonstige</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="mw_ae_text_label">
+        <property name="text">
+         <string>Eintrag:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QPushButton" name="mw_button_save">
+        <property name="text">
+         <string>speichern</string>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+        <property name="flat">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QTextEdit" name="mw_ae_text"/>
+      </item>
+      <item row="4" column="1">
+       <widget class="QPushButton" name="mw_button_save_edit">
+        <property name="text">
+         <string>Änderungen übernehmen</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QPushButton" name="mw_sammeln_button">
+        <property name="text">
+         <string>Erfolge sammeln</string>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+        <property name="flat">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="mw_button_new">
+        <property name="text">
+         <string>neu</string>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="mw_button_show">
+        <property name="text">
+         <string>anzeigen</string>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="11" column="0">
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
        <widget class="QLabel" name="label_user">
@@ -288,6 +305,16 @@
        </widget>
       </item>
      </layout>
+    </item>
+    <item row="9" column="0">
+     <widget class="QPushButton" name="mw_delete_button">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="text">
+       <string>Löschen</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -304,5 +331,38 @@
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>tabel_erfolge</sender>
+   <signal>doubleClicked(QModelIndex)</signal>
+   <receiver>mw_edit_button</receiver>
+   <slot>show()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>318</x>
+     <y>531</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>318</x>
+     <y>403</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tabel_erfolge</sender>
+   <signal>doubleClicked(QModelIndex)</signal>
+   <receiver>mw_delete_button</receiver>
+   <slot>show()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>318</x>
+     <y>531</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>318</x>
+     <y>432</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

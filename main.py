@@ -3,7 +3,7 @@ import os
 import sys
 import time
 
-from qtpy import QtWidgets
+from qtpy import QtWidgets, QtCore
 
 from login.mainwindow import Ui_MainWindow
 from sucsessreports.User import User
@@ -31,12 +31,18 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.tabel_erfolge.hideColumn(2)
 
         self.ui.mw_feedback_label.hide()
+        self.ui.mw_edit_button.hide()
+        self.ui.mw_delete_button.hide()
+        self.ui.mw_button_save_edit.hide()
 
         self.ui.mw_button_show.clicked.connect(self.show_erfolge)
         self.ui.mw_button_new.clicked.connect(self._show_entry_widgets)
         self.ui.mw_button_save.clicked.connect(self.add_line)
+        self.ui.mw_button_save_edit.clicked.connect(self.save_edit)
         self.ui.mw_sammeln_button.clicked.connect(self.get_mail)
         self.ui.mw_cr_button.clicked.connect(self.create_report)
+        self.ui.mw_edit_button.clicked.connect(self.edit_entry)
+        self.ui.mw_delete_button.clicked.connect(self.delete_line)
 
     def _hide_report_widgets(self):
         self.ui.mw_cr_button.hide()
@@ -106,6 +112,45 @@ class MainWindow(QtWidgets.QMainWindow):
         self.save_erfolge()
         self._hide_entry_widgets()
         self.ui.mw_feedback_label.setText('')
+
+    def edit_entry(self):
+        row = self.ui.tabel_erfolge.selectedItems()[0].row()
+
+        self.ui.mw_delete_button.setEnabled(False)
+        self.ui.mw_edit_button.setEnabled(False)
+        self.ui.mw_button_new.setEnabled(False)
+        self.ui.mw_sammeln_button.setEnabled(False)
+        self.ui.mw_button_save.setEnabled(False)
+
+        print(row)
+        date = self.ui.tabel_erfolge.item(row, 1).text()
+        qdate = QtCore.QDateTime(int(date[0:4]), int(date[5:7]), int(date[8:]), 0, 0, 0, 0)
+        self.ui.mw_ae_date.setDateTime(qdate)
+        self.ui.mw_ae_text.setText(self.ui.tabel_erfolge.item(row, 4).text())
+        self.ui.mw_ae_cat.setCurrentText('Sonstige')
+        self.ui.mw_ae_cat.setCurrentText(self.ui.tabel_erfolge.item(row, 3).text())
+        self._show_entry_widgets()
+        self.ui.mw_button_save_edit.show()
+        self.ui.tabel_erfolge.removeRow(row)
+
+    def save_edit(self):
+        self.ui.mw_delete_button.setEnabled(True)
+        self.ui.mw_edit_button.setEnabled(True)
+        self.ui.mw_button_new.setEnabled(True)
+        self.ui.mw_sammeln_button.setEnabled(True)
+        self.ui.mw_button_save.setEnabled(True)
+        self.ui.mw_button_save_edit.hide()
+        self.ui.mw_edit_button.hide()
+        self.ui.mw_delete_button.hide()
+
+        self.add_line()
+
+    def delete_line(self):
+        print(self.ui.tabel_erfolge.selectedItems()[0].row())
+        self.ui.tabel_erfolge.removeRow(self.ui.tabel_erfolge.selectedItems()[0].row())
+        self.ui.mw_edit_button.hide()
+        self.ui.mw_delete_button.hide()
+        self.save_erfolge()
 
     def show_erfolge(self):
         if self.ui.mw_feedback_label.text() == 'Achtung: ungespeicherte Änderungen!':
