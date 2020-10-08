@@ -10,9 +10,29 @@ from sucsessreports.User import User
 from ui.mainwindow import Ui_Erfolgsberichte
 
 # ToDo:
-#     add delete and edit buttons for entries
 #     create method to create the report
 #     check mailadress with regex when creating user
+
+# ToDo:
+#   hide this stuff! Make a starup_loop?
+if os.path.exists("./SR_Data/resources"):
+    pass
+else:
+    os.makedirs("./SR_Data/resources")
+    with open("./SR_Data/resources/cred.csv", mode='w', newline="", encoding="utf-8") as cred:
+        fnames = ['protocol', 'name', 'pw', 'server', 'port']
+        writer = csv.DictWriter(cred, fnames)
+        writer.writeheader()
+    with open("./SR_Data/resources/user_db.csv", mode='w', newline="", encoding="utf-8") as user_db:
+        fnames = ['name', 'mail1', 'mail2', 'city', 'pw']
+        writer = csv.DictWriter(user_db, fnames)
+        writer.writeheader()
+
+if os.path.exists("./SR_Data/userdata"):
+    pass
+else:
+    os.makedirs("./SR_Data/userdata/db")
+    os.makedirs("./SR_Data/userdata/reports")
 
 
 app = QtWidgets.QApplication(sys.argv)
