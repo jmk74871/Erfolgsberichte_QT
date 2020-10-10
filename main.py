@@ -121,7 +121,6 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.mw_sammeln_button.setEnabled(False)
         self.ui.mw_button_save.setEnabled(False)
 
-        print(row)
         date = self.ui.tabel_erfolge.item(row, 1).text()
         qdate = QtCore.QDateTime(int(date[0:4]), int(date[5:7]), int(date[8:]), 0, 0, 0, 0)
         self.ui.mw_ae_date.setDateTime(qdate)
