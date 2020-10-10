@@ -71,11 +71,10 @@ class User:
 
             for uid in uids:
                 r_msg = server.fetch([uid], ['RFC822'])
-                # print(r_msg[uid][b'RFC822'])
                 msg = email.message_from_bytes(r_msg[uid][b'RFC822'])
 
                 if not msg.get_payload() is None:
-                    # get clean from address
+                    # get clean from-address
                     clean_from = msg.get("from").split()[-1][1:-1]
 
                     # get a clean date
@@ -88,7 +87,7 @@ class User:
                         if part.get_content_type() == 'text/plain':
                             clean_text = part.get_payload().split('\r\n\r\n')[0]
 
-                    ent = Entry(uid, clean_date, clean_from, msg.get("subject"), clean_text)
+                    ent = Entry(uid, clean_date, self.name, msg.get("subject"), clean_text)
                     ent.save(f'./SR_Data/userdata/db/{self.name}_db/{self.name}_db.csv')
 
         else:

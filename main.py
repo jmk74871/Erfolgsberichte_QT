@@ -10,11 +10,8 @@ from sucsessreports.User import User
 from ui.mainwindow import Ui_Erfolgsberichte
 
 # ToDo:
-#     create method to create the report
+#     !!!create method to create the report!!!
 #     check mailadress with regex when creating user
-
-# ToDo:
-#   hide this stuff! Make a starup_loop?
 
 
 app = QtWidgets.QApplication(sys.argv)
