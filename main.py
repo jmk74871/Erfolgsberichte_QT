@@ -6,6 +6,7 @@ import time
 from qtpy import QtWidgets, QtCore
 
 from login.mainwindow import Ui_MainWindow
+from sucsessreports.ReportWriter import ReportWriter
 from sucsessreports.User import User
 from ui.mainwindow import Ui_Erfolgsberichte
 
@@ -34,12 +35,15 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.mw_delete_button.hide()
         self.ui.mw_button_save_edit.hide()
 
-        self.ui.mw_button_show.clicked.connect(self.show_erfolge)
+        self.ui.mw_sammeln_button.clicked.connect(self.get_mail)
         self.ui.mw_button_new.clicked.connect(self._show_entry_widgets)
+        self.ui.mw_button_show.clicked.connect(self._show_report_widgets)
+
         self.ui.mw_button_save.clicked.connect(self.add_line)
         self.ui.mw_button_save_edit.clicked.connect(self.save_edit)
-        self.ui.mw_sammeln_button.clicked.connect(self.get_mail)
+
         self.ui.mw_cr_button.clicked.connect(self.create_report)
+
         self.ui.mw_edit_button.clicked.connect(self.edit_entry)
         self.ui.mw_delete_button.clicked.connect(self.delete_line)
 
@@ -54,8 +58,8 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def _show_report_widgets(self):
         self.ui.mw_cr_button.show()
-        self.ui.mw_cr_cat_box.show()
-        self.ui.mw_cr_cat_label.show()
+        # self.ui.mw_cr_cat_box.show()
+        # self.ui.mw_cr_cat_label.show()
         self.ui.mw_cr_from_date.show()
         self.ui.mw_cr_from_label.show()
         self.ui.mw_cr_to_date.show()
@@ -189,8 +193,12 @@ class MainWindow(QtWidgets.QMainWindow):
             self.show_erfolge()
 
     def create_report(self):
-        # pass the filters
-        self.user.create_report()
+        report_creator = ReportWriter(from_date=self.ui.mw_cr_from_date.date(),
+                                      to_date=self.ui.mw_cr_to_date.date(),
+                                      user=self.user)
+        report_creator.create_report()
+        self._hide_report_widgets()
+        os.startfile(self.user.rep_dir)
 
 
 class LoginWindow(QtWidgets.QMainWindow):
