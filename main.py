@@ -15,24 +15,6 @@ from ui.mainwindow import Ui_Erfolgsberichte
 
 # ToDo:
 #   hide this stuff! Make a starup_loop?
-if os.path.exists("./SR_Data/resources"):
-    pass
-else:
-    os.makedirs("./SR_Data/resources")
-    with open("./SR_Data/resources/cred.csv", mode='w', newline="", encoding="utf-8") as cred:
-        fnames = ['protocol', 'name', 'pw', 'server', 'port']
-        writer = csv.DictWriter(cred, fnames)
-        writer.writeheader()
-    with open("./SR_Data/resources/user_db.csv", mode='w', newline="", encoding="utf-8") as user_db:
-        fnames = ['name', 'mail1', 'mail2', 'city', 'pw']
-        writer = csv.DictWriter(user_db, fnames)
-        writer.writeheader()
-
-if os.path.exists("./SR_Data/userdata"):
-    pass
-else:
-    os.makedirs("./SR_Data/userdata/db")
-    os.makedirs("./SR_Data/userdata/reports")
 
 
 app = QtWidgets.QApplication(sys.argv)
@@ -215,9 +197,6 @@ class MainWindow(QtWidgets.QMainWindow):
         self.user.create_report()
 
 
-window = MainWindow()
-
-
 class LoginWindow(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -228,6 +207,26 @@ class LoginWindow(QtWidgets.QMainWindow):
         self.ui.login_feedback_label.hide()
         self.ui.login_button.clicked.connect(self.login)
         self.ui.cu_button.clicked.connect(self.create_user)
+
+    def dir_builder(self):
+        if os.path.exists("./SR_Data/resources"):
+            pass
+        else:
+            os.makedirs("./SR_Data/resources")
+            with open("./SR_Data/resources/cred.csv", mode='w', newline="", encoding="utf-8") as cred:
+                fnames = ['protocol', 'name', 'pw', 'server', 'port']
+                writer = csv.DictWriter(cred, fnames)
+                writer.writeheader()
+            with open("./SR_Data/resources/user_db.csv", mode='w', newline="", encoding="utf-8") as user_db:
+                fnames = ['name', 'mail1', 'mail2', 'city', 'pw']
+                writer = csv.DictWriter(user_db, fnames)
+                writer.writeheader()
+
+        if os.path.exists("./SR_Data/userdata"):
+            pass
+        else:
+            os.makedirs("./SR_Data/userdata/db")
+            os.makedirs("./SR_Data/userdata/reports")
 
     def login(self):
         with open('./SR_Data/resources/user_db.csv', 'r', encoding='utf_8') as user_db:
@@ -297,6 +296,8 @@ class LoginWindow(QtWidgets.QMainWindow):
                 self.ui.cu_feedback_label.show()
 
 
+window = MainWindow()
 login = LoginWindow()
 login.show()
+login.dir_builder()
 sys.exit(app.exec_())
